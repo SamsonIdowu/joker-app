@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  jokes:
+    build:
+      context: ./jokes
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://db:27017/jokes
+  messages:
+    build:
+      context: ./messages
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=mongodb://db:27017/messages
+  ui:
+    build:
+      context: .
+    ports:
+      - "80:80"
+    depends_on:
+      - jokes
+      - messages
+    environment:
+      - JOKES_API_URL=http://jokes:8080
+      - MESSAGES_API_URL=http://messages:8081
+  db:
+    image: mongo:latest
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
