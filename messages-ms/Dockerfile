@@ -9,6 +9,6 @@ COPY . .
 
 ENV MONGO_URI=<your-mongo-uri>
 
-EXPOSE 8080
+EXPOSE 11001
 
 CMD ["python", "messages.py"]
