@@ -12,6 +12,7 @@ sleep 10
 # Test the services
 curl http://localhost:8080/jokes
 curl http://localhost:8081/messages
+curl http://localhost
 
 # Stop the containers
 docker-compose down

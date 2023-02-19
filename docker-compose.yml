@@ -3,7 +3,7 @@ version: '3'
 services:
   jokes:
     build:
-      context: ./jokes
+      context: ./jokes-ms
     ports:
       - "8080:8080"
     depends_on:
@@ -12,7 +12,7 @@ services:
       - DB_URL=mongodb://db:27017/jokes
   messages:
     build:
-      context: ./messages
+      context: ./messages-ms
     ports:
       - "8081:8081"
     depends_on:
@@ -21,7 +21,7 @@ services:
       - DB_URL=mongodb://db:27017/messages
   ui:
     build:
-      context: .
+      context: ./ui-ms
     ports:
       - "80:80"
     depends_on:
