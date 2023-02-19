@@ -22,16 +22,10 @@ services:
     restart: always
 
   ui:
-    build:
-      context: ./ui-ms
+    build: ./ui-ms
     ports:
-      - "80:80"
-    depends_on:
-      - jokes
-      - messages
-    environment:
-      - JOKES_API_URL=http://jokes:10001
-      - MESSAGES_API_URL=http://messages:10002
+      - '10000:10000'
+    restart: always
 
   mongo:
     image: mongo:latest

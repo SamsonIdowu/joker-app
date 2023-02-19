@@ -1,13 +1,12 @@
-FROM node:14-alpine
+FROM python:3.9-slim-buster
 
 WORKDIR /app
 
-COPY package.json .
-#COPY package-lock.json .
-RUN npm install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 10000
 
-CMD ["npm", "start"]
+CMD ["python", "ui.py"]
