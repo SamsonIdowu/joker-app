@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+rom flask import Flask, jsonify
 import os
 import pymongo
 import random
@@ -13,4 +13,4 @@ def get_messages():
     return jsonify({'message': message})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 11001)))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10002)))

@@ -9,6 +9,7 @@ COPY . .
 
 ENV MONGO_URI=<your-mongo-uri>
 
-EXPOSE 11000
+EXPOSE 10001
 
 CMD ["python", "jokes.py"]
+

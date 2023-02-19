@@ -2,23 +2,25 @@ version: '3'
 
 services:
   jokes:
-    build:
-      context: ./jokes-ms
+    build: ./jokes-ms
     ports:
-      - "11000:11000"
-    depends_on:
-      - db
+      - '10001:10001'
     environment:
-      - DB_URL=mongodb://db:27017/jokes
+      - MONGO_URI=mongodb://mongo:27017/
+    depends_on:
+      - mongo
+    restart: always
+
   messages:
-    build:
-      context: ./messages-ms
+    build: ./jokes-ms
     ports:
-      - "11001:11001"
-    depends_on:
-      - db
+      - '10002:10002'
     environment:
-      - DB_URL=mongodb://db:27017/messages
+      - MONGO_URI=mongodb://mongo:27017/
+    depends_on:
+      - mongo
+    restart: always
+
   ui:
     build:
       context: ./ui-ms
@@ -28,11 +30,17 @@ services:
       - jokes
       - messages
     environment:
-      - JOKES_API_URL=http://jokes:8080
-      - MESSAGES_API_URL=http://messages:8081
-  db:
+      - JOKES_API_URL=http://jokes:10001
+      - MESSAGES_API_URL=http://messages:10002
+
+  mongo:
     image: mongo:latest
     volumes:
       - ./data:/data/db
     ports:
       - "27017:27017"
+    restart: always
+
+volumes:
+  data:
+

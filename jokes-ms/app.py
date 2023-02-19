@@ -11,5 +11,4 @@ def get_jokes():
     return jsonify({'joke': joke['text']})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 11000)))
-    
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 10001)))
